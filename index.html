@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mostafa Elmorshdi — Mobile Developer</title>
-<meta name="description" content="Mostafa Elmorshdi — Senior Android Developer. Kotlin, Jetpack Compose, KMP/CMP, Clean Architecture. 14 published apps on Google Play." />
+<title>Mostafa Elmorshdi — Senior Android Developer</title>
+<meta name="description" content="Senior Android Developer building production Kotlin and Jetpack Compose apps with Clean Architecture, real-time systems, maps, payments, testing, and CI/CD." />
 <meta name="author" content="Mostafa Elmorshdi" />
-<meta property="og:title" content="Mostafa Elmorshdi — Mobile Developer" />
-<meta property="og:description" content="Senior Android Developer · Kotlin · Jetpack Compose · KMP/CMP · 14 apps shipped on Google Play." />
+<meta name="theme-color" content="#0b0d12" />
+<link rel="canonical" href="https://elmorshdi.github.io/" />
+<meta property="og:title" content="Mostafa Elmorshdi — Senior Android Developer" />
+<meta property="og:description" content="Production Android engineering with Kotlin, Jetpack Compose, Clean Architecture, real-time systems, testing, and CI/CD." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://elmorshdi.github.io/" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,10 +40,19 @@
     overflow-x: hidden;
   }
   a { color: inherit; text-decoration: none; }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 3px solid rgba(61,220,132,.72); outline-offset: 4px; }
+  ::selection { background: rgba(127,82,255,.42); color: #fff; }
   .mono { font-family: 'JetBrains Mono', monospace; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
   .accent { color: var(--purple-2); }
   .green { color: var(--green); }
+  .skip-link {
+    position: fixed; left: 18px; top: 12px; z-index: 100;
+    transform: translateY(-160%); background: var(--green); color: #07110c;
+    padding: 10px 14px; border-radius: 10px; font-weight: 700;
+  }
+  .skip-link:focus { transform: none; }
 
   /* ===== Background glow ===== */
   .glow {
@@ -71,7 +83,18 @@
   .menu-btn { display: none; background: none; border: 0; color: var(--ink); font-size: 26px; cursor: pointer; }
 
   /* ===== Hero ===== */
-  header.hero { padding: 92px 0 72px; position: relative; }
+  header.hero { padding: 88px 0 72px; position: relative; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0,1fr) 260px; gap: 56px; align-items: center; }
+  .portrait-wrap { position: relative; width: 240px; height: 240px; justify-self: end; }
+  .portrait-wrap::before {
+    content: ''; position: absolute; inset: -12px; border-radius: 32px;
+    background: linear-gradient(140deg, rgba(127,82,255,.9), rgba(61,220,132,.75));
+    transform: rotate(4deg); opacity: .8;
+  }
+  .portrait {
+    position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 26px;
+    border: 1px solid rgba(255,255,255,.12); background: var(--card);
+  }
   .hero .eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     border: 1px solid var(--line); background: var(--card);
@@ -79,7 +102,7 @@
   }
   .hero .eyebrow .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(61,220,132,.6); animation: pulse 2s infinite; }
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(61,220,132,.55)} 70%{box-shadow:0 0 0 10px rgba(61,220,132,0)} 100%{box-shadow:0 0 0 0 rgba(61,220,132,0)} }
-  .hero h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.04; letter-spacing: -1.6px; font-weight: 800; }
+  .hero h1 { font-size: clamp(38px, 6.2vw, 64px); line-height: 1.04; letter-spacing: -1.6px; font-weight: 800; }
   .hero h1 .grad {
     background: linear-gradient(110deg, var(--purple-2), var(--green));
     -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -98,10 +121,10 @@
   .btn-ghost:hover { transform: translateY(-3px); border-color: var(--purple); }
 
   /* ===== Stats ===== */
-  .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 56px; }
-  .stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; text-align: center; }
-  .stat .num { font-size: 34px; font-weight: 800; background: linear-gradient(120deg,var(--purple-2),var(--green)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .stat .lbl { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .proof { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 56px; }
+  .proof-item { background: rgba(22,26,36,.78); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+  .proof-item strong { display: block; color: var(--ink); font-size: 15px; margin-bottom: 5px; }
+  .proof-item span { color: var(--muted); font-size: 12.5px; }
 
   /* ===== Sections ===== */
   section { padding: 72px 0; }
@@ -184,47 +207,69 @@
     .nav-links { position: fixed; inset: 64px 0 auto 0; flex-direction: column; background: var(--bg-2); border-bottom: 1px solid var(--line); padding: 20px 24px; gap: 18px; align-items: flex-start; transform: translateY(-120%); transition: transform .3s; }
     .nav-links.open { transform: none; }
     .menu-btn { display: block; }
-    .stats { grid-template-columns: repeat(2,1fr); }
+    .hero-grid { grid-template-columns: 1fr; gap: 38px; }
+    .portrait-wrap { width: 190px; height: 190px; justify-self: start; order: -1; }
+    .proof { grid-template-columns: repeat(2,1fr); }
     .about, .skills-grid, .projects, .edu-grid { grid-template-columns: 1fr; }
     .project.featured { grid-column: span 1; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 18px; }
+    header.hero { padding-top: 56px; }
+    .proof { grid-template-columns: 1fr; }
+    .btn { width: 100%; justify-content: center; }
+    .portrait-wrap { width: 160px; height: 160px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
 <div class="glow"></div>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav>
   <div class="wrap">
     <a href="#top" class="brand">Mostafa<span class="dot">.</span></a>
-    <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    <button class="menu-btn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navlinks">☰</button>
     <div class="nav-links" id="navlinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
-      <a href="https://github.com/elmorshdi/Elmorshdi/raw/main/cv/Mostafa-Elmorshdi-CV.pdf" class="nav-cta">Download CV</a>
+      <a href="#contact" class="nav-cta">Let's talk</a>
     </div>
   </div>
 </nav>
 
 <a id="top"></a>
-<header class="hero">
+<header class="hero" id="main">
   <div class="wrap">
-    <div class="eyebrow reveal"><span class="pulse"></span> Available for mobile opportunities</div>
-    <h1 class="reveal">Mostafa Elmorshdi<br><span class="grad">Mobile Developer.</span></h1>
-    <p class="role reveal">Senior Android Developer · <span class="mono">Kotlin</span> · <span class="mono">Jetpack Compose</span> · <span class="mono">KMP / CMP</span></p>
-    <p class="blurb reveal">4+ years designing and shipping production-grade Android apps on Google Play — multi-module Clean Architecture, real-time systems, payments, and white-label platforms. <span class="green">14 apps shipped.</span></p>
-    <div class="cta reveal">
-      <a href="#projects" class="btn btn-primary">View Projects →</a>
-      <a href="https://github.com/elmorshdi/Elmorshdi/raw/main/cv/Mostafa-Elmorshdi-CV.pdf" class="btn btn-ghost">📄 Download CV</a>
-      <a href="https://github.com/elmorshdi" class="btn btn-ghost">⌨️ GitHub</a>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow reveal"><span class="pulse"></span> Senior Android Developer · Egypt</div>
+        <h1 class="reveal">Mostafa Elmorshdi<br><span class="grad">Production Android Engineer.</span></h1>
+        <p class="role reveal"><span class="mono">Kotlin</span> · <span class="mono">Jetpack Compose</span> · <span class="mono">Coroutines/Flow</span> · <span class="mono">Clean Architecture</span></p>
+        <p class="blurb reveal">I build reliable Android products from Figma and API contracts through architecture, real-time integrations, testing, CI/CD, and Google Play delivery.</p>
+        <div class="cta reveal">
+          <a href="#projects" class="btn btn-primary">Explore selected work →</a>
+          <a href="https://github.com/elmorshdi" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/mostafa-elmorshdi-13b6811a4" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="portrait-wrap reveal">
+        <img class="portrait" src="https://avatars.githubusercontent.com/u/53372814?v=4" alt="Mostafa Elmorshdi" width="240" height="240" />
+      </div>
     </div>
 
-    <div class="stats">
-      <div class="stat reveal"><div class="num">4+</div><div class="lbl">Years experience</div></div>
-      <div class="stat reveal"><div class="num">14</div><div class="lbl">Apps on Google Play</div></div>
-      <div class="stat reveal"><div class="num">11</div><div class="lbl">Products built</div></div>
-      <div class="stat reveal"><div class="num">4</div><div class="lbl">Multi-app platforms</div></div>
+    <div class="proof">
+      <div class="proof-item reveal"><strong>4+ years</strong><span>Commercial Android experience</span></div>
+      <div class="proof-item reveal"><strong>End-to-end ownership</strong><span>Requirements, architecture, release</span></div>
+      <div class="proof-item reveal"><strong>Real-time systems</strong><span>Maps, sockets, chat, media</span></div>
+      <div class="proof-item reveal"><strong>Quality &amp; delivery</strong><span>Testing, reviews, CI/CD</span></div>
     </div>
   </div>
 </header>
@@ -234,9 +279,10 @@
     <div class="sec-head reveal"><div class="kicker">// about</div><h2>Who I am</h2></div>
     <div class="about">
       <div class="reveal">
-        <p>I'm a mobile developer from Egypt with 4+ years building Android apps that real users rely on every day. My focus is <strong style="color:#fff">scalable, production-ready apps</strong> with clean architecture and smooth UX.</p>
-        <p>I've shipped across many domains — real-time <strong style="color:#fff">video/audio calling</strong> and chat, live <strong style="color:#fff">GPS tracking</strong>, multi-gateway <strong style="color:#fff">payments</strong>, and <strong style="color:#fff">white-label</strong> platforms productized into multiple apps. I take full ownership from architecture through Play Store release, and I mentor junior engineers along the way.</p>
-        <p>Currently going deeper into <strong style="color:#fff">Kotlin Multiplatform &amp; Compose Multiplatform</strong> to share business logic across platforms.</p>
+        <p>I'm an Android developer from Egypt with 4+ years of commercial experience building apps across mobility, education, e-commerce, marketplaces, booking, and communication products.</p>
+        <p>My strongest work sits where mobile engineering becomes complex: <strong style="color:#fff">real-time GPS tracking</strong>, sockets, notifications, media playback, payment flows, background work, and maintainable multi-module architecture.</p>
+        <p>I collaborate closely with design, backend, QA, and product teams, take features from requirements to release, and support other engineers through code reviews and practical architectural guidance.</p>
+        <p>I'm currently exploring <strong style="color:#fff">Kotlin Multiplatform and Compose Multiplatform</strong> for shared mobile architecture.</p>
       </div>
       <div class="codecard reveal">
         <div class="bar"><span style="background:#ff5f56"></span><span style="background:#ffbd2e"></span><span style="background:#27c93f"></span></div>
@@ -245,10 +291,10 @@
   <span class="kw">val</span> role = <span class="st">"Senior Android Dev"</span>
   <span class="kw">val</span> stack = listOf(
     <span class="st">"Kotlin"</span>, <span class="st">"Compose"</span>,
-    <span class="st">"KMP / CMP"</span>, <span class="st">"Clean Arch"</span>
+    <span class="st">"Coroutines"</span>, <span class="st">"Clean Arch"</span>
   )
-  <span class="kw">fun</span> <span class="fn">currentlyShipping</span>() =
-    <span class="st">"14 apps · Google Play"</span> 🚀
+  <span class="kw">fun</span> <span class="fn">ownership</span>() =
+    <span class="st">"Architecture → Google Play"</span>
 }</pre>
       </div>
     </div>
@@ -259,27 +305,28 @@
   <div class="wrap">
     <div class="sec-head reveal"><div class="kicker">// skills</div><h2>Tech stack</h2><p>The tools I use to design, build, and ship.</p></div>
     <div class="skills-grid">
-      <div class="skillcard reveal"><h3>🅺 Languages &amp; Cross-Platform</h3><div class="chips"><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">Swift</span><span class="chip">Dart</span><span class="chip">KMP</span><span class="chip">Compose Multiplatform</span></div></div>
+      <div class="skillcard reveal"><h3>🅺 Android foundations</h3><div class="chips"><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">Android SDK</span><span class="chip">Gradle KTS</span><span class="chip">Version Catalog</span></div></div>
       <div class="skillcard reveal"><h3>🎨 UI / UX</h3><div class="chips"><span class="chip">Jetpack Compose</span><span class="chip">Material 3</span><span class="chip">XML Views</span><span class="chip">Animations</span><span class="chip">Accessibility</span><span class="chip">RTL / Arabic</span></div></div>
       <div class="skillcard reveal"><h3>🏛️ Architecture</h3><div class="chips"><span class="chip">Clean Architecture</span><span class="chip">Multi-module</span><span class="chip">MVI</span><span class="chip">MVVM</span><span class="chip">SOLID</span><span class="chip">White-label / Flavors</span></div></div>
       <div class="skillcard reveal"><h3>⚡ Async &amp; DI</h3><div class="chips"><span class="chip">Coroutines</span><span class="chip">Flow</span><span class="chip">StateFlow</span><span class="chip">Hilt / Dagger</span><span class="chip">Koin</span></div></div>
-      <div class="skillcard reveal"><h3>📞 Real-time &amp; Media</h3><div class="chips"><span class="chip">Socket.IO</span><span class="chip">WebRTC</span><span class="chip">ZEGOCLOUD</span><span class="chip">Twilio</span><span class="chip">Vonage</span><span class="chip">Picture-in-Picture</span></div></div>
-      <div class="skillcard reveal"><h3>🌐 Networking &amp; Data</h3><div class="chips"><span class="chip">Ktor</span><span class="chip">Retrofit</span><span class="chip">OkHttp</span><span class="chip">SSL Pinning</span><span class="chip">Room</span><span class="chip">DataStore</span></div></div>
-      <div class="skillcard reveal"><h3>💳 Backend, Maps &amp; Payments</h3><div class="chips"><span class="chip">Firebase</span><span class="chip">Google Maps SDK</span><span class="chip">Stripe</span><span class="chip">PayTabs</span><span class="chip">HyperPay</span><span class="chip">Moyasar</span></div></div>
-      <div class="skillcard reveal"><h3>🛠️ Testing &amp; DevOps</h3><div class="chips"><span class="chip">JUnit</span><span class="chip">MockK</span><span class="chip">Turbine</span><span class="chip">Gradle KTS</span><span class="chip">GitHub Actions</span><span class="chip">GitLab CI</span></div></div>
+      <div class="skillcard reveal"><h3>📞 Real-time &amp; Media</h3><div class="chips"><span class="chip">Socket.IO</span><span class="chip">WebRTC</span><span class="chip">Media3 / ExoPlayer</span><span class="chip">ZEGOCLOUD</span><span class="chip">Twilio</span><span class="chip">Picture-in-Picture</span></div></div>
+      <div class="skillcard reveal"><h3>🌐 Networking &amp; Data</h3><div class="chips"><span class="chip">Ktor</span><span class="chip">Retrofit</span><span class="chip">OkHttp</span><span class="chip">Token refresh</span><span class="chip">Room</span><span class="chip">DataStore</span></div></div>
+      <div class="skillcard reveal"><h3>📍 Platform integrations</h3><div class="chips"><span class="chip">Firebase</span><span class="chip">Google Maps</span><span class="chip">FCM</span><span class="chip">Foreground Services</span><span class="chip">Payments</span><span class="chip">QR Scanning</span></div></div>
+      <div class="skillcard reveal"><h3>🛠️ Quality &amp; Delivery</h3><div class="chips"><span class="chip">JUnit</span><span class="chip">MockK</span><span class="chip">Compose UI Tests</span><span class="chip">Ktlint</span><span class="chip">Sonar</span><span class="chip">GitHub / GitLab CI</span></div></div>
     </div>
   </div>
 </section>
 
 <section id="projects">
   <div class="wrap">
-    <div class="sec-head reveal"><div class="kicker">// projects</div><h2>Selected work</h2><p>Published apps across marketplaces, real-time platforms, e-commerce, and education.</p></div>
+    <div class="sec-head reveal"><div class="kicker">// projects</div><h2>Selected production work</h2><p>Android products that demonstrate architecture, real-time behavior, complex integrations, and end-to-end delivery.</p></div>
     <div class="filters reveal" id="filters">
-      <button class="filter active" data-f="all">All</button>
-      <button class="filter" data-f="platform">Multi-app platforms</button>
-      <button class="filter" data-f="realtime">Real-time</button>
-      <button class="filter" data-f="marketplace">Marketplaces</button>
-      <button class="filter" data-f="commerce">E-commerce</button>
+      <button class="filter active" type="button" data-f="all" aria-pressed="true">All</button>
+      <button class="filter" type="button" data-f="platform" aria-pressed="false">Multi-app platforms</button>
+      <button class="filter" type="button" data-f="realtime" aria-pressed="false">Real-time</button>
+      <button class="filter" type="button" data-f="marketplace" aria-pressed="false">Marketplaces</button>
+      <button class="filter" type="button" data-f="commerce" aria-pressed="false">E-commerce</button>
+      <button class="filter" type="button" data-f="education" aria-pressed="false">Education</button>
     </div>
     <div class="projects" id="projects-grid"><!-- injected by JS --></div>
   </div>
@@ -289,11 +336,11 @@
   <div class="wrap">
     <div class="sec-head reveal"><div class="kicker">// experience</div><h2>Where I've worked</h2></div>
     <div class="timeline">
-      <div class="tl-item reveal"><div class="when">Oct 2022 — Present</div><h3>Android Developer · <span class="co">Awamer Alshabaka (AAIT)</span></h3><ul><li>Architected &amp; delivered 5+ production apps with multi-module Clean Architecture (MVI/MVVM).</li><li>Integrated payment gateways (Stripe, PayTabs, HyperPay, Moyasar) and real-time GPS tracking.</li><li>Built CI/CD pipelines (GitHub Actions / GitLab) — cut release cycle time ~40%. Mentored 3 juniors.</li></ul></div>
-      <div class="tl-item reveal"><div class="when">Jan 2025 — Mar 2026</div><h3>Android Developer · <span class="co">Coursemia</span></h3><ul><li>Owned end-to-end development to Google Play launch — a learning platform for healthcare professionals.</li><li>Multi-module Clean Architecture (MVI) with Koin, Ktor + SSL pinning, Firebase suite.</li></ul></div>
-      <div class="tl-item reveal"><div class="when">Oct 2023 — Aug 2025</div><h3>Android Developer · <span class="co">SAGA</span></h3><ul><li>Migrated legacy Java modules to modern Kotlin; refactored to Clean Architecture — cut onboarding ~30%.</li><li>Resolved critical production bugs through systematic root-cause analysis.</li></ul></div>
-      <div class="tl-item reveal"><div class="when">Mar 2022 — Aug 2022</div><h3>Android Developer Intern · <span class="co">Apps Square</span></h3><ul><li>Implemented UI features &amp; fixed bugs in an Agile/Scrum team; hands-on Kotlin &amp; Git workflows.</li></ul></div>
-      <div class="tl-item reveal"><div class="when">Nov 2020 — Jan 2021</div><h3>Mobile Developer Trainee · <span class="co">MCIT Egypt</span></h3><ul><li>Government program in Dart &amp; Flutter; built sample cross-platform apps.</li></ul></div>
+      <div class="tl-item reveal"><div class="when">Oct 2022 — Present</div><h3>Android Developer · <span class="co">Awamer Alshabaka (AAIT)</span></h3><ul><li>Build and release production Android products with Compose, maps, payments, Firebase, and real-time integrations.</li><li>Translate Figma and product requirements into maintainable features backed by Clean Architecture.</li><li>Improve delivery through testing, code reviews, debugging, and CI/CD automation.</li></ul></div>
+      <div class="tl-item reveal"><div class="when">Jan 2025 — Mar 2026 · Part-time</div><h3>Android Developer · <span class="co">Coursemia</span></h3><ul><li>Owned Android delivery from architecture to Google Play for a healthcare learning platform.</li><li>Built a multi-module MVI codebase with Compose, Koin, Ktor, video playback, and Firebase.</li></ul></div>
+      <div class="tl-item reveal"><div class="when">Oct 2023 — Aug 2025 · Part-time</div><h3>Android Developer · <span class="co">SAGA</span></h3><ul><li>Migrated legacy Java modules to Kotlin and introduced clearer architectural boundaries.</li><li>Supported white-label releases and resolved production issues through root-cause analysis.</li></ul></div>
+      <div class="tl-item reveal"><div class="when">Mar 2022 — Aug 2022</div><h3>Android Developer · <span class="co">Apps Square</span></h3><ul><li>Implemented product features and fixed Android issues in an Agile team using Kotlin and Git.</li></ul></div>
+      <div class="tl-item reveal"><div class="when">Oct 2021 — Dec 2021</div><h3>Application Developer Trainee · <span class="co">MCIT Egypt</span></h3><ul><li>Completed hands-on mobile application training covering UI, state, navigation, and software fundamentals.</li></ul></div>
     </div>
   </div>
 </section>
@@ -305,7 +352,7 @@
       <div class="infocard reveal"><h3>🎓 Education</h3><p class="big">B.Sc. Statistics &amp; Computer Science</p><p>Faculty of Science, Mansoura University · 2017 – 2021</p></div>
       <div class="infocard reveal"><h3>📜 Certifications</h3><p>Android Developer Nanodegree (Udacity) · Jetpack &amp; Kotlin for Java Developers (LinkedIn Learning) · ACM-ACPC Problem Solving · Claude Code in Action (Anthropic)</p></div>
       <div class="infocard reveal"><h3>🌍 Languages</h3><p><span class="big">Arabic</span> — Native &nbsp;·&nbsp; <span class="big">English</span> — Professional Working Proficiency</p></div>
-      <div class="infocard reveal"><h3>📍 Location</h3><p class="big">El Mahalla El Kobra, Egypt</p><p>Open to remote &amp; relocation.</p></div>
+      <div class="infocard reveal"><h3>📍 Location</h3><p class="big">Egypt · GMT+3</p><p>Open to remote senior Android opportunities.</p></div>
     </div>
   </div>
 </section>
@@ -315,19 +362,18 @@
     <div class="reveal">
       <div class="kicker" style="color:var(--green);font-family:'JetBrains Mono',monospace;">// contact</div>
       <h2>Let's build something great</h2>
-      <p>Open to senior Android & cross-platform mobile roles. The fastest way to reach me is email or LinkedIn.</p>
+      <p>Open to senior Android roles, product collaborations, and thoughtful engineering conversations. Email or LinkedIn is the best way to reach me.</p>
       <div class="social">
         <a href="mailto:elmorshdi53@gmail.com" class="btn btn-primary">✉️ elmorshdi53@gmail.com</a>
-        <a href="https://linkedin.com/in/mostafa-elmorshdi-13b6811a4" class="btn btn-ghost">in LinkedIn</a>
-        <a href="https://wa.me/+201149137351" class="btn btn-ghost">💬 WhatsApp</a>
-        <a href="https://github.com/elmorshdi" class="btn btn-ghost">⌨️ GitHub</a>
+        <a href="https://linkedin.com/in/mostafa-elmorshdi-13b6811a4" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/elmorshdi" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">© <span id="year"></span> Mostafa Elmorshdi · Built with Kotlin energy ⚡ · <span class="mono accent">elmorshdi.github.io</span></div>
+  <div class="wrap">© <span id="year"></span> Mostafa Elmorshdi · Senior Android Developer · <span class="mono accent">elmorshdi.github.io</span></div>
 </footer>
 
 <script>
@@ -337,7 +383,7 @@
       cats:["platform","realtime","marketplace"],
       desc:"A construction-services marketplace connecting clients with professionals (architecture, legal, trades). Provider profiles, reviews, real-time chat, and voice/video calling with Picture-in-Picture, plus secure contract & document management.",
       tech:["Kotlin","Compose","Socket.IO","ZEGOCLOUD","Twilio","Vonage","WebRTC","PiP"],
-      links:[["User App","https://play.google.com/store/apps/details?id=com.cs.h_and_i.user"],["Provider App","https://play.google.com/store/apps/details?id=com.cs.h_and_i.provider"]] },
+      links:[["Google Play","https://play.google.com/store/apps/details?id=com.cs.h_and_i.user"]] },
 
     { icon:"🚌", name:"SAST", badge:"Two-app platform · Parent + Captain", featured:true,
       cats:["platform","realtime"],
@@ -349,7 +395,7 @@
       cats:["platform","realtime","commerce"],
       desc:"Instant same-hour delivery from partner e-commerce stores. User app: ordering, pay-on-delivery, live rider tracking. Delegate app: courier request management with real-time location updates.",
       tech:["Kotlin","Compose","Google Maps","Real-time Tracking","Hilt"],
-      links:[["User App","https://play.google.com/store/apps/details?id=com.aait.fawry.user"],["Delegate App","https://play.google.com/store/apps/details?id=com.aait.fawry.delegate"]] },
+      links:[["Delegate App","https://play.google.com/store/apps/details?id=com.aait.fawry.delegate"]] },
 
     { icon:"🏫", name:"Schoolie", badge:"White-label platform",
       cats:["platform"],
@@ -358,7 +404,7 @@
       links:[["Google Play","https://play.google.com/store/apps/details?id=com.saga.school"],["More by SAGA","https://play.google.com/store/apps/developer?id=S+A+G+A"]] },
 
     { icon:"🎓", name:"Coursemia", badge:"Online learning",
-      cats:["marketplace"],
+      cats:["education"],
       desc:"A Coursera-style platform for healthcare professionals, owned end-to-end to Google Play launch. Course discovery, enrollment, video playback, and push notifications.",
       tech:["Kotlin","Compose","Koin","Ktor","SSL Pinning","Firebase","MVI"],
       links:[["Google Play","https://play.google.com/store/apps/details?id=com.coursemia"]] },
@@ -419,8 +465,12 @@
 
   document.getElementById('filters').addEventListener('click', e => {
     if (!e.target.classList.contains('filter')) return;
-    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
     e.target.classList.add('active');
+    e.target.setAttribute('aria-pressed', 'true');
     render(e.target.dataset.f);
   });
 
@@ -432,7 +482,16 @@
 
   // ===== Misc =====
   document.getElementById('year').textContent = new Date().getFullYear();
-  document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open')));
+  const menuButton = document.querySelector('.menu-btn');
+  const navLinks = document.getElementById('navlinks');
+  function setMenu(open) {
+    navLinks.classList.toggle('open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  }
+  menuButton.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+  document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 </script>
 </body>
 </html>
