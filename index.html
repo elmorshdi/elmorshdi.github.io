@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mostafa Elmorshdi — Senior Android Developer</title>
-<meta name="description" content="Senior Android Developer building production Kotlin and Jetpack Compose apps with Clean Architecture, real-time mobility, AI voice-to-text integration, maps, payments, testing, and CI/CD." />
+<meta name="description" content="Senior Android Developer building Kotlin and Jetpack Compose apps across ride-hailing, delivery, smart mobility, maps, real-time systems, payments, and AI workflows." />
 <meta name="author" content="Mostafa Elmorshdi" />
 <meta name="theme-color" content="#10131f" />
 <link rel="canonical" href="https://elmorshdi.github.io/" />
 <meta property="og:title" content="Mostafa Elmorshdi — Senior Android Developer" />
-<meta property="og:description" content="Senior Android engineering: BEEB scooter rental, real-time systems, AI integrations, Kotlin, Compose, and end-to-end delivery." />
+<meta property="og:description" content="Android development for passenger transportation, delivery, BEEB scooter rental, student mobility, and real-time systems." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://elmorshdi.github.io/" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>" />
@@ -475,9 +475,10 @@ footer{background:#0d101b;border-top:1px dashed #505a73;color:#b6bfd3}
 </div></div></section>
 <section id="projects">
   <div class="wrap">
-    <div class="sec-head reveal"><div class="kicker">// projects</div><h2>Selected production work</h2><p>Android products that demonstrate architecture, real-time behavior, complex integrations, and end-to-end delivery.</p></div>
+    <div class="sec-head reveal"><div class="kicker">// projects</div><h2>Projects across mobility &amp; beyond</h2><p>Passenger transport, delivery, shipping, student mobility and other Android products. Production work is distinguished from projects still in testing or development.</p></div>
     <div class="filters reveal" id="filters" role="group" aria-label="Filter projects">
       <button class="filter active" type="button" data-f="all" aria-pressed="true">All</button>
+      <button class="filter" type="button" data-f="mobility" aria-pressed="false">Mobility &amp; Delivery</button>
       <button class="filter" type="button" data-f="platform" aria-pressed="false">Multi-app platforms</button>
       <button class="filter" type="button" data-f="realtime" aria-pressed="false">Real-time</button>
       <button class="filter" type="button" data-f="marketplace" aria-pressed="false">Marketplaces</button>
@@ -582,7 +583,15 @@ footer{background:#0d101b;border-top:1px dashed #505a73;color:#b6bfd3}
   // ===== Project data =====
   const PROJECTS = [
     {"icon":"🌍","name":"SaudiGram","badge":"Tourism & social platform","featured":true,"cats":["platform","realtime"],"desc":"A tourism and social app with posts, reels, chat, and Facebook-style statuses featuring stickers, music, and text overlays. Android contributions include OpenTalk integration, live broadcasts, mentions, hashtags, socket events, notifications, and call Picture-in-Picture.","tech":["Kotlin","Android Views","Fragments","OpenTalk","Socket.IO","Media","Picture-in-Picture"],"links":[["Google Play","https://play.google.com/store/apps/details?id=com.app.saudigram"],["Website","https://beta.saudigram.app/"],["Read case study","#saudigram"]]},
-    { icon:"🛴", name:"BEEB", badge:"ICRAFTSA · Scooter rental & IoT", featured:true, cats:["platform","realtime"], desc:"Android trip lifecycle with QR scanning, Socket.IO integration, active ride UI, Google Maps, parking photo capture, and ratings.", tech:["Android","Socket.IO","Google Maps","QR scanning"], links:[["Google Play","https://play.google.com/store/apps/details?id=com.izdiharalufq.beebbeeb"],["Read case study","#beeb"]] },
+    { icon:"🛴", name:"BEEB", badge:"ICRAFTSA · Scooter rental & IoT", featured:true, cats:["platform","realtime","mobility"], desc:"Android trip lifecycle with QR scanning, Socket.IO integration, active ride UI, Google Maps, parking photo capture, and ratings.", tech:["Android","Socket.IO","Google Maps","QR scanning"], links:[["Google Play","https://play.google.com/store/apps/details?id=com.izdiharalufq.beebbeeb"],["Read case study","#beeb"]] },
+    {"icon":"🚕","name":"Mashawir Taxi","badge":"Passenger transport · Client project","cats":["mobility","platform"],"desc":"Passenger transportation and taxi-service mobile application. Part of my professional Android project portfolio.","tech":["Android","Passenger transport"],"links":[]},
+    {"icon":"🚗","name":"Naql Rukab","badge":"Passenger mobility · In development","cats":["mobility","platform"],"desc":"Passenger transportation application project in development; detailed feature ownership and release status are not yet public.","tech":["Android","Passenger mobility"],"links":[]},
+    {"icon":"🚙","name":"Lady Go","badge":"Delivery · Customer & Captain","cats":["mobility","platform"],"desc":"Customer and captain mobile delivery experience. Work included addressing location/map, messaging notification, and delivery-state issues during handover.","tech":["Android","Delivery workflows","Maps","Notifications"],"links":[]},
+    {"icon":"📦","name":"Mowsel","badge":"Peer-to-peer shipping platform","cats":["mobility","marketplace","platform"],"desc":"Shipment marketplace connecting customers with travelers, with shipment offers and payment integration work, including HyperPay.","tech":["Android","Shipment workflows","HyperPay"],"links":[]},
+    {"icon":"🚚","name":"Naqli","badge":"Transportation · Testing","cats":["mobility","platform"],"desc":"Transport app with ongoing Android testing and bug-fix coordination. Release-stage features are not presented as production outcomes.","tech":["Android","QA","Transport"],"links":[]},
+    {"icon":"📬","name":"Desert Courier VIP","badge":"Courier service · Testing","cats":["mobility","platform"],"desc":"Courier-service mobile app in testing-stage preparation; project-specific feature ownership is not publicly documented.","tech":["Android","Courier services"],"links":[]},
+    {"icon":"🧭","name":"Roha & Ooty","badge":"Client apps · Testing","cats":["platform"],"desc":"Client mobile applications in testing and bug-resolution cycles; included as professional project exposure rather than shipped case studies.","tech":["Android","Testing","Release readiness"],"links":[]},
+    {"icon":"🚛","name":"Haml","badge":"Logistics · API integration","cats":["mobility","platform"],"desc":"Large logistics-oriented client project with Android API integration ongoing. Not described as released.","tech":["Android","API integration","Logistics"],"links":[]},
     { icon:"🎙️", name:"Smart Recorder", badge:"Audio · AI voice to text", cats:["ai"], desc:"Audio recording and organization with albums, duplicate clips, editing tools, retention settings, and AI voice-to-text functionality.", tech:["Android","Audio","AI transcription"], links:[] },
     { icon:"🏋️", name:"Musl", badge:"Fitness · Workout tracking", cats:["platform"], desc:"Workout days and rounds, exercise replacement, and progress input. Android API integration with release APK delivery through GitHub Actions.", tech:["Android","REST APIs","GitHub Actions"], links:[["Google Play","https://play.google.com/store/apps/details?id=com.musl.fit"],["GitHub","https://github.com/elmorshdi/Musl"]] },
     { icon:"🏗️", name:"H&I", badge:"Two-app platform · User + Provider", featured:false,
@@ -592,13 +601,13 @@ footer{background:#0d101b;border-top:1px dashed #505a73;color:#b6bfd3}
       links:[["Google Play","https://play.google.com/store/apps/details?id=com.cs.h_and_i.user"]] },
 
     { icon:"🚌", name:"SAST", badge:"ICRAFTSA · Parent + Captain", featured:false,
-      cats:["platform","realtime"],
+      cats:["platform","realtime","mobility"],
       desc:"Smart student transportation. Captain app: trip management, QR-scan attendance, route maps, ratings. Parent app: real-time GPS bus tracking, live notifications, subscriptions & payments, multi-student accounts. Fully Arabic / RTL.",
       tech:["Kotlin","Compose","Google Maps","Real-time GPS","QR","FCM","RTL"],
       links:[["Parent App","https://play.google.com/store/apps/details?id=com.aait.sast.student"],["Captain App","https://play.google.com/store/apps/details?id=com.aait.sast.captain"]] },
 
     { icon:"🛵", name:"Faster", badge:"Two-app platform · User + Delegate",
-      cats:["platform","realtime","commerce"],
+      cats:["platform","realtime","commerce","mobility"],
       desc:"Instant same-hour delivery from partner e-commerce stores. User app: ordering, pay-on-delivery, live rider tracking. Delegate app: courier request management with real-time location updates.",
       tech:["Kotlin","Compose","Google Maps","Real-time Tracking","Hilt"],
       links:[["Delegate App","https://play.google.com/store/apps/details?id=com.aait.fawry.delegate"]] },
