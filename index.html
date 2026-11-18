@@ -657,9 +657,19 @@ footer{background:#0d101b;border-top:1px dashed #505a73;color:#b6bfd3}
   ];
 
   const grid = document.getElementById('projects-grid');
+  // Present transport and delivery experience first for recruiters.
+  const priorityOrder = [
+    "Mashawir Taxi", "Lady Go", "Mowsel", "Faster", "SAST", "BEEB",
+    "Naql Rukab", "Naqli", "Desert Courier VIP", "Haml"
+  ];
+  const projectRank = p => {
+    const rank = priorityOrder.indexOf(p.name);
+    return rank === -1 ? priorityOrder.length : rank;
+  };
   function render(filter) {
     grid.innerHTML = PROJECTS
       .filter(p => filter === 'all' || p.cats.includes(filter))
+      .sort((a, b) => projectRank(a) - projectRank(b))
       .map(p => `
         <article class="project reveal in${p.featured ? ' featured' : ''}">
           <div class="top">
